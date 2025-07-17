@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Product - Don't Buy Tee</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: sans-serif;
+      padding: 20px;
+      background: #fff;
+      color: #111;
+    }
+    header, footer {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+    nav a {
+      margin: 0 10px;
+      text-decoration: none;
+      color: #111;
+    }
+    .slideshow {
+      max-width: 500px;
+      margin: auto;
+      text-align: center;
+    }
+    .slideshow img {
+      width: 100%;
+      display: none;
+    }
+    .slideshow img.active {
+      display: block;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Long Life D.B.W.Y.C.W.Tee</h1>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="shop.html">Shop</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+  </header>
+
+  <div class="slideshow">
+    <img src="Essential Heavyweight Cotton T-Shirt-mockups-11.png" alt="Front of Shirt" class="active">
+    <img src="Essential Heavyweight Cotton T-Shirt-mockups-12.png" alt="Back of Shirt">
+    <br><br>
+    <button onclick="prevSlide()">&#8592; Prev</button>
+    <button onclick="nextSlide()">Next &#8594;</button>
+  </div>
+
+  <footer>
+    <p>&copy; 2025 Long Life Clothing</p>
+  </footer>
+
+  <script>
+    const slides = document.querySelectorAll('.slideshow img');
+    let index = 0;
+
+    function showSlide(i) {
+      slides.forEach((img, idx) => {
+        img.classList.toggle('active', idx === i);
+      });
+    }
+
+    function prevSlide() {
+      index = (index - 1 + slides.length) % slides.length;
+      showSlide(index);
+    }
+
+    function nextSlide() {
+      index = (index + 1) % slides.length;
+      showSlide(index);
+    }
+  </script>
+</body>
+</html>

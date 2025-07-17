@@ -1,81 +1,95 @@
-<!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE html><html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Product - Don't Buy Tee</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Don't Buy Tee - Long Life Clothing</title>
   <style>
-    body {
-      margin: 0;
-      font-family: sans-serif;
-      padding: 20px;
-      background: #fff;
-      color: #111;
-    }
-    header, footer {
-      text-align: center;
-      margin-bottom: 20px;
-    }
-    nav a {
-      margin: 0 10px;
-      text-decoration: none;
-      color: #111;
-    }
-    .slideshow {
-      max-width: 500px;
-      margin: auto;
-      text-align: center;
-    }
-    .slideshow img {
-      width: 100%;
-      display: none;
-    }
-    .slideshow img.active {
-      display: block;
-    }
+    body { font-family: Arial, sans-serif; margin: 0; padding: 20px; background-color: #fff; color: #333; }
+    .container { max-width: 900px; margin: auto; }
+    h1 { text-align: center; margin-bottom: 10px; }
+    .slideshow-container { position: relative; text-align: center; }
+    .product-image { display: none; width: 100%; max-width: 400px; margin: auto; }
+    .active { display: block; }
+    .controls { margin: 10px 0; text-align: center; }
+    select, button { padding: 10px; margin: 10px; font-size: 16px; }
+    .buy-button { background-color: black; color: white; border: none; cursor: pointer; }
   </style>
 </head>
 <body>
-  <header>
-    <h1>Long Life D.B.W.Y.C.W.Tee</h1>
-    <nav>
-      <a href="index.html">Home</a>
-      <a href="shop.html">Shop</a>
-      <a href="contact.html">Contact</a>
-    </nav>
-  </header>
+  <div class="container">
+    <h1>Don't Buy Where You Can't Work Tee</h1><div class="controls">
+  <label for="colorSelect">Color:</label>
+  <select id="colorSelect" onchange="updateColor()">
+    <option value="black">Black</option>
+    <option value="Coffee">Coffee</option>
+    <option value="Dark Apricot">Dark Apricot</option>
+    <option value="light gray">Gray</option>
+    <option value="white">White</option>
+    
+    
+  </select>
 
-  <div class="slideshow">
-    <img src="Essential Heavyweight Cotton T-Shirt-mockups-11.png" alt="Front of Shirt" class="active">
-    <img src="Essential Heavyweight Cotton T-Shirt-mockups-12.png" alt="Back of Shirt">
-    <br><br>
-    <button onclick="prevSlide()">&#8592; Prev</button>
-    <button onclick="nextSlide()">Next &#8594;</button>
-  </div>
+  <label for="sizeSelect">Size:</label>
+  <select id="sizeSelect">
+    <option>Small</option>
+    <option>Medium</option>
+    <option>Large</option>
+    <option>X-Large</option>
+    <option>XX-Large</option>
+  </select>
+</div>
 
-  <footer>
-    <p>&copy; 2025 Long Life Clothing</p>
-  </footer>
+<div id="slideshow" class="slideshow-container">
+  <img src="img/DBWYCW-White.png" class="product-image white-slide" alt="White">
+  <img src="img/DBWYCW-BLK.png" class="product-image black-slide" alt="Black">
+  <img src="img/DBWYCW-LG.Png" class="product-image black-slide" alt="Light Gray">
+  <img src="img/DBWYCW-DKAP.Png" class="product-image gray-slide" alt="Dark Apricot">
+  <img src="img/DBWYCW-Coffee.Png" class="product-image green-slide" alt="Coffee">
+</div>
 
-  <script>
-    const slides = document.querySelectorAll('.slideshow img');
-    let index = 0;
+<div class="controls">
+  <button onclick="prevSlide()">Prev</button>
+  <button onclick="nextSlide()">Next</button>
+</div>
 
-    function showSlide(i) {
-      slides.forEach((img, idx) => {
-        img.classList.toggle('active', idx === i);
-      });
+<div class="controls">
+  <button class="buy-button">Buy Now</button>
+</div>
+
+  </div> <script>
+    let currentSlide = 0;
+    let currentColor = 'white';
+
+    function updateColor() {
+      currentColor = document.getElementById('colorSelect').value;
+      currentSlide = 0;
+      showSlides();
+    }
+
+    function showSlides() {
+      const allImages = document.querySelectorAll('.product-image');
+      allImages.forEach(img => img.classList.remove('active'));
+
+      const visibleSlides = document.querySelectorAll('.' + currentColor + '-slide');
+      visibleSlides.forEach(img => img.style.display = 'none');
+      visibleSlides[currentSlide].style.display = 'block';
+      visibleSlides[currentSlide].classList.add('active');
     }
 
     function prevSlide() {
-      index = (index - 1 + slides.length) % slides.length;
-      showSlide(index);
+      const slides = document.querySelectorAll('.' + currentColor + '-slide');
+      currentSlide = (currentSlide - 1 + slides.length) % slides.length;
+      showSlides();
     }
 
     function nextSlide() {
-      index = (index + 1) % slides.length;
-      showSlide(index);
+      const slides = document.querySelectorAll('.' + currentColor + '-slide');
+      currentSlide = (currentSlide + 1) % slides.length;
+      showSlides();
     }
-  </script>
-</body>
+
+    // Initial display
+    showSlides();
+  </script></body>
 </html>
+

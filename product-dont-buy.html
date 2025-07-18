@@ -1,4 +1,5 @@
-<!DOCTYPE html><html lang="en">
+<!DOCTYPE html>
+<html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -17,49 +18,48 @@
 </head>
 <body>
   <div class="container">
-    <h1>Don't Buy Where You Can't Work Tee</h1><div class="controls">
-  <label for="colorSelect">Color:</label>
-  <select id="colorSelect" onchange="updateColor()">
-    <option value="Black">Black</option>
-    <option value="Coffee">Coffee</option>
-    <option value="Dark Apricot">Dark Apricot</option>
-    <option value="Light Gray">Gray</option>
-    <option value="White">White</option>
-    
-    
-  </select>
+    <h1>Don't Buy Where You Can't Work Tee</h1>
+    <div class="controls">
+      <label for="colorSelect">Color:</label>
+      <select id="colorSelect" onchange="updateColor()">
+        <option value="Black">Black</option>
+        <option value="Coffee">Coffee</option>
+        <option value="Dark Apricot">Dark Apricot</option>
+        <option value="Light Gray">Light Gray</option>
+        <option value="White">White</option>
+      </select>
 
-  <label for="sizeSelect">Size:</label>
-  <select id="sizeSelect">
-    <option>Small</option>
-    <option>Medium</option>
-    <option>Large</option>
-    <option>X-Large</option>
-    <option>XX-Large</option>
-  </select>
-</div>
+      <label for="sizeSelect">Size:</label>
+      <select id="sizeSelect">
+        <option>Small</option>
+        <option>Medium</option>
+        <option>Large</option>
+        <option>X-Large</option>
+        <option>XX-Large</option>
+      </select>
+    </div>
 
-<div id="slideshow" class="slideshow-container">
-  <img src="DBWYCW-White.png" class="product-image color-White" alt="White">
-<img src="DBWYCW-BLK.png" class="product-image color-Black" alt="Black">
-<img src="DBWYCW-LG.png" class="product-image color-Light Gray" alt="Light Gray">
-<img src="DBWYCW-DKAP.png" class="product-image color-Dark Apricot" alt="Dark Apricot">
-<img src="DBWYCW-Coffee.png" class="product-image color-Coffee" alt="Coffee">
-</div>
+    <div id="slideshow" class="slideshow-container">
+      <img src="DBWYCW-White.png" class="product-image color-White" alt="White">
+      <img src="DBWYCW-BLK.png" class="product-image color-Black" alt="Black">
+      <img src="DBWYCW-LG.png" class="product-image color-Light Gray" alt="Light Gray">
+      <img src="DBWYCW-DKAP.png" class="product-image color-Dark Apricot" alt="Dark Apricot">
+      <img src="DBWYCW-Coffee.png" class="product-image color-Coffee" alt="Coffee">
+    </div>
 
-<div class="controls">
-  <button onclick="prevSlide()">Prev</button>
-  <button onclick="nextSlide()">Next</button>
-</div>
+    <div class="controls">
+      <button onclick="prevSlide()">Prev</button>
+      <button onclick="nextSlide()">Next</button>
+    </div>
 
-<div class="controls">
-  <button class="buy-button">Buy Now</button>
-</div>
+    <div class="controls">
+      <button class="buy-button">Buy Now</button>
+    </div>
+  </div>
 
-  </div> 
   <script>
     let currentSlide = 0;
-    let currentColor = 'white';
+    let currentColor = 'White'; // Default selected color
 
     function updateColor() {
       currentColor = document.getElementById('colorSelect').value;
@@ -69,28 +69,36 @@
 
     function showSlides() {
       const allImages = document.querySelectorAll('.product-image');
-      allImages.forEach(img => img.classList.remove('active'));
+      allImages.forEach(img => {
+        img.classList.remove('active');
+        img.style.display = 'none';
+      });
 
-      const visibleSlides = document.querySelectorAll('.' + currentColor + '-slide');
-      visibleSlides.forEach(img => img.style.display = 'none');
-      visibleSlides[currentSlide].style.display = 'block';
-      visibleSlides[currentSlide].classList.add('active');
+      const visibleSlides = document.querySelectorAll('.color-' + currentColor);
+      if (visibleSlides.length > 0) {
+        visibleSlides[currentSlide].style.display = 'block';
+        visibleSlides[currentSlide].classList.add('active');
+      }
     }
 
     function prevSlide() {
-      const slides = document.querySelectorAll('.' + currentColor + '-slide');
-      currentSlide = (currentSlide - 1 + slides.length) % slides.length;
-      showSlides();
+      const slides = document.querySelectorAll('.color-' + currentColor);
+      if (slides.length > 0) {
+        currentSlide = (currentSlide - 1 + slides.length) % slides.length;
+        showSlides();
+      }
     }
 
     function nextSlide() {
-     const visibleSlides = document.querySelectorAll('.color-' + currentColor);
-      currentSlide = (currentSlide + 1) % slides.length;
-      showSlides();
+      const slides = document.querySelectorAll('.color-' + currentColor);
+      if (slides.length > 0) {
+        currentSlide = (currentSlide + 1) % slides.length;
+        showSlides();
+      }
     }
 
-    // Initial display
+    // Initialize with default color
     showSlides();
-  </script></body>
+  </script>
+</body>
 </html>
-

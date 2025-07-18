@@ -40,11 +40,11 @@
 </div>
 
 <div id="slideshow" class="slideshow-container">
-  <img src="DBWYCW-White.png" class="product-image white-slide" alt="White">
-  <img src="DBWYCW-BLK.png" class="product-image black-slide" alt="Black">
-  <img src="DBWYCW-LG.png" class="product-image black-slide" alt="Light Gray">
-  <img src="DBWYCW-DKAP.png" class="product-image gray-slide" alt="Dark Apricot">
-  <img src="DBWYCW-Coffee.png" class="product-image green-slide" alt="Coffee">
+  <img src="DBWYCW-White.png" class="product-image color-White" alt="White">
+<img src="DBWYCW-BLK.png" class="product-image color-Black" alt="Black">
+<img src="DBWYCW-LG.png" class="product-image color-Light Gray" alt="Light Gray">
+<img src="DBWYCW-DKAP.png" class="product-image color-Dark Apricot" alt="Dark Apricot">
+<img src="DBWYCW-Coffee.png" class="product-image color-Coffee" alt="Coffee">
 </div>
 
 <div class="controls">
@@ -84,7 +84,7 @@
     }
 
     function nextSlide() {
-      const slides = document.querySelectorAll('.' + currentColor + '-slide');
+     const visibleSlides = document.querySelectorAll('.color-' + currentColor);
       currentSlide = (currentSlide + 1) % slides.length;
       showSlides();
     }
